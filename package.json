@@ -3,7 +3,7 @@
   "description": "Fork from `react-virtual` with react 19 compatability",
   "author": "Anton Dubrouski <antondubrouski@gmail.com>",
   "user": "adubrouski",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "homepage": "https://github.com/adubrouski/react-virtualized-compat",
   "main": "dist/commonjs/index.js",
   "module": "dist/es/index.js",

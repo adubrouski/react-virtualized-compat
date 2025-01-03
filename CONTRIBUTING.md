@@ -82,7 +82,7 @@ Follow this process if you'd like your work considered for inclusion in the proj
    # Navigate to the newly cloned directory
    cd react-virtualized
    # Assign the original repo to a remote called "upstream"
-   git remote add upstream https://github.com/bvaughn/react-virtualized
+   git remote add upstream https://github.com/adubrouski/react-virtualized-compat
    ```
 
 2. If you cloned a while ago, get the latest changes from upstream:

@@ -1,13 +1,14 @@
 {
   "name": "react-virtualized-compat",
-  "description": "React components for efficiently rendering large, scrollable lists and tabular data",
-  "author": "Brian Vaughn <brian.david.vaughn@gmail.com>",
-  "user": "bvaughn",
-  "version": "1.0.0",
-  "homepage": "https://github.com/bvaughn/react-virtualized",
+  "description": "Fork from `react-virtual` with react 19 compatability",
+  "author": "Anton Dubrouski <antondubrouski@gmail.com>",
+  "user": "adubrouski",
+  "version": "1.0.1",
+  "homepage": "https://github.com/adubrouski/react-virtualized-compat",
   "main": "dist/commonjs/index.js",
   "module": "dist/es/index.js",
   "jsnext:main": "dist/es/index.js",
+  "types": "index.d.ts",
   "license": "MIT",
   "scripts": {
     "build:types": "flow-copy-source --ignore \"**/*.{jest,e2e,ssr,example}.js\" source/WindowScroller dist/es/WindowScroller && flow-copy-source --ignore \"**/*.{jest,e2e,ssr,example}.js\" source/AutoSizer dist/es/AutoSizer",
@@ -36,18 +37,13 @@
     "watch": "watch 'clear && yarn run test -s' source",
     "watch:jest": "jest --no-watchman --watch"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "pretty-quick --staged"
-    }
-  },
   "files": [
     "dist",
     "styles.css"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/bvaughn/react-virtualized.git"
+    "url": "https://github.com/adubrouski/react-virtualized-compat.git"
   },
   "keywords": [
     "react",
@@ -67,7 +63,7 @@
     "spreadsheet"
   ],
   "bugs": {
-    "url": "https://github.com/bvaughn/react-virtualized/issues"
+    "url": "https://github.com/adubrouski/react-virtualized-compat/issues"
   },
   "devDependencies": {
     "@babel/cli": "^7.7.0",

@@ -3,15 +3,15 @@ export {
   ArrowKeyStepperProps,
   ChildProps as ArrowKeyStepperChildProps,
   ScrollIndices,
-} from './es/ArrowKeyStepper';
-export {AutoSizer, AutoSizerProps, Dimensions, Size} from './es/AutoSizer';
+} from './dist/es/ArrowKeyStepper';
+export {AutoSizer, AutoSizerProps, Dimensions, Size} from './dist/es/AutoSizer';
 export {
   CellMeasurer,
   CellMeasurerCache,
   CellMeasurerCacheParams,
   CellMeasurerProps,
   KeyMapper,
-} from './es/CellMeasurer';
+} from './dist/es/CellMeasurer';
 export {
   Collection,
   CollectionCellGroupRenderer,
@@ -21,12 +21,12 @@ export {
   CollectionCellSizeAndPosition,
   CollectionCellSizeAndPositionGetter,
   CollectionProps,
-} from './es/Collection';
+} from './dist/es/Collection';
 export {
   ColumnSizer,
   ColumnSizerProps,
   SizedColumnProps,
-} from './es/ColumnSizer';
+} from './dist/es/ColumnSizer';
 export {
   accessibilityOverscanIndicesGetter,
   CellSizeAndPositionManager,
@@ -50,13 +50,13 @@ export {
   SectionRenderedParams,
   SizeAndPositionData,
   VisibleCellRange,
-} from './es/Grid';
+} from './dist/es/Grid';
 export {
   InfiniteLoader,
   InfiniteLoaderChildProps,
   InfiniteLoaderProps,
-} from './es/InfiniteLoader';
-export {List, ListProps, ListRowProps, ListRowRenderer} from './es/List';
+} from './dist/es/InfiniteLoader';
+export {List, ListProps, ListRowProps, ListRowRenderer} from './dist/es/List';
 export {
   CellRenderer,
   createCellPositioner as createMasonryCellPositioner,
@@ -68,15 +68,15 @@ export {
   OnScrollCallback,
   Position,
   Positioner,
-} from './es/Masonry';
-export {MultiGrid, MultiGridProps, MultiGridState} from './es/MultiGrid';
+} from './dist/es/Masonry';
+export {MultiGrid, MultiGridProps, MultiGridState} from './dist/es/MultiGrid';
 export {
   OnScrollParams,
   ScrollSync,
   ScrollSyncChildProps,
   ScrollSyncProps,
   ScrollSyncState,
-} from './es/ScrollSync';
+} from './dist/es/ScrollSync';
 export {
   Column,
   ColumnProps,
@@ -104,14 +104,14 @@ export {
   TableProps,
   TableRowProps,
   TableRowRenderer,
-} from './es/Table';
+} from './dist/es/Table';
 export {
   IS_SCROLLING_TIMEOUT,
   WindowScroller,
   WindowScrollerChildProps,
   WindowScrollerProps,
   WindowScrollerState,
-} from './es/WindowScroller';
+} from './dist/es/WindowScroller';
 
 export type Index = {
   index: number;

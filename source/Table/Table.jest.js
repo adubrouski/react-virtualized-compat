@@ -8,6 +8,10 @@ import Table from './Table';
 import SortDirection from './SortDirection';
 
 describe('Table', () => {
+  afterEach(() => {
+    render.unmount();
+  });
+
   const array = [];
   for (var i = 0; i < 100; i++) {
     array.push({

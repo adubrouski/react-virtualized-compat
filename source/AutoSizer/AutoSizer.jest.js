@@ -10,6 +10,10 @@ function DefaultChildComponent({height, width, foo, bar}) {
 }
 
 describe('AutoSizer', () => {
+  afterEach(() => {
+    render.unmount();
+  });
+
   function getMarkup({
     bar = 123,
     ChildComponent = DefaultChildComponent,
@@ -127,7 +131,7 @@ describe('AutoSizer', () => {
     await new Promise(resolve => setTimeout(resolve, 100));
   }
 
-  it('should update :height after a resize event', async done => {
+  it('should update :height after a resize event', async () => {
     const rendered = findDOMNode(
       render(
         getMarkup({
@@ -141,11 +145,10 @@ describe('AutoSizer', () => {
     await simulateResize({element: rendered, height: 400, width: 300});
     expect(rendered.textContent).toContain('height:400');
     expect(rendered.textContent).toContain('width:300');
-    done();
   });
 
   describe('onResize and (re)render', () => {
-    it('should trigger when size changes', async done => {
+    it('should trigger when size changes', async () => {
       const onResize = jest.fn();
       const ChildComponent = jest
         .fn()
@@ -165,10 +168,9 @@ describe('AutoSizer', () => {
       await simulateResize({element: rendered, height: 400, width: 300});
       expect(ChildComponent).toHaveBeenCalledTimes(1);
       expect(onResize).toHaveBeenCalledTimes(2);
-      done();
     });
 
-    it('should only trigger when height changes for disableWidth == true', async done => {
+    it('should only trigger when height changes for disableWidth == true', async () => {
       const onResize = jest.fn();
       const ChildComponent = jest
         .fn()
@@ -192,10 +194,9 @@ describe('AutoSizer', () => {
       await simulateResize({element: rendered, height: 200, width: 300});
       expect(ChildComponent).toHaveBeenCalledTimes(1);
       expect(onResize).toHaveBeenCalledTimes(2);
-      done();
     });
 
-    it('should only trigger when width changes for disableHeight == true', async done => {
+    it('should only trigger when width changes for disableHeight == true', async () => {
       const onResize = jest.fn();
       const ChildComponent = jest
         .fn()
@@ -219,7 +220,6 @@ describe('AutoSizer', () => {
       await simulateResize({element: rendered, height: 200, width: 300});
       expect(ChildComponent).toHaveBeenCalledTimes(1);
       expect(onResize).toHaveBeenCalledTimes(2);
-      done();
     });
   });
 

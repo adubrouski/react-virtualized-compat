@@ -1,6 +1,7 @@
 /** @flow */
 import * as React from 'react';
 import type {CellMeasureCache} from './types';
+import {cloneElement} from 'react';
 
 type Children = (params: {measure: () => void}) => React.Element<*>;
 
@@ -29,7 +30,7 @@ type Props = {
 export default class CellMeasurer extends React.PureComponent<Props> {
   static __internalCellMeasurerFlag = false;
 
-  _child: {current: null | HTMLElement} = React.createRef();
+  _child: ?Element = React.createRef(null);
 
   componentDidMount() {
     this._maybeMeasureCell();
@@ -42,12 +43,25 @@ export default class CellMeasurer extends React.PureComponent<Props> {
   render() {
     const {children} = this.props;
 
-    return typeof children === 'function'
-      ? children({
-          measure: this._measure,
-          registerChild: this._registerChild,
-        })
-      : children;
+    const resolvedChildren =
+      typeof children === 'function'
+        ? children({measure: this._measure, registerChild: this._registerChild})
+        : children;
+
+    if (resolvedChildren === null) {
+      return resolvedChildren;
+    }
+
+    return cloneElement(resolvedChildren, {
+      ref: node => {
+        if (typeof resolvedChildren.ref === 'function') {
+          resolvedChildren.ref(node);
+        } else if (resolvedChildren.ref) {
+          resolvedChildren.ref.current = node;
+        }
+        this._child.current = node;
+      },
+    });
   }
 
   _getCellMeasurements() {
@@ -156,7 +170,7 @@ export default class CellMeasurer extends React.PureComponent<Props> {
         'CellMeasurer registerChild expects to be passed Element or null',
       );
     }
-    this._child = element;
+    this._child.current = element;
     if (element) {
       this._maybeMeasureCell();
     }

@@ -11,6 +11,10 @@ import Collection from './Collection';
 import {CELLS, SECTION_SIZE} from './TestData';
 
 describe('Collection', () => {
+  afterEach(() => {
+    render.unmount();
+  });
+
   function defaultCellRenderer({index, key, style}) {
     return (
       <div className="cell" key={key} style={style}>
@@ -638,7 +642,7 @@ describe('Collection', () => {
     });
   });
 
-  it('should pass the cellRenderer an :isScrolling flag when scrolling is in progress', async done => {
+  it('should pass the cellRenderer an :isScrolling flag when scrolling is in progress', async () => {
     const cellRendererCalls = [];
     function cellRenderer({index, isScrolling, key, style}) {
       cellRendererCalls.push(isScrolling);
@@ -661,8 +665,6 @@ describe('Collection', () => {
     await new Promise(resolve => setTimeout(resolve, 1));
 
     expect(cellRendererCalls[0]).toEqual(true);
-
-    done();
   });
 
   describe('horizontalOverscanSize and verticalOverscanSize', () => {
@@ -796,7 +798,7 @@ describe('Collection', () => {
       cellRendererCalls.forEach(call => expect(call.isScrolling).toEqual(true));
     });
 
-    it('should clear cache once :isScrolling is false', async done => {
+    it('should clear cache once :isScrolling is false', async () => {
       const cellRendererCalls = [];
       function cellRenderer({isScrolling, index, key, style}) {
         cellRendererCalls.push({isScrolling, index});
@@ -824,8 +826,6 @@ describe('Collection', () => {
         }),
       );
       expect(cellRendererCalls.length).not.toEqual(0);
-
-      done();
     });
   });
 

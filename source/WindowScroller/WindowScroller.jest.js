@@ -62,6 +62,10 @@ function simulateWindowResize({height = 0, width = 0}) {
 }
 
 describe('WindowScroller', () => {
+  afterEach(() => {
+    render.unmount();
+  });
+
   // Set default window height and scroll position between tests
   beforeEach(() => {
     window.scrollY = 0;

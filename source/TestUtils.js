@@ -11,8 +11,6 @@ export function render(markup) {
 
     // Unless we attach the mount-node to body, getBoundingClientRect() won't work
     document.body.appendChild(render._mountNode);
-
-    afterEach(render.unmount);
   }
 
   return ReactDOM.render(markup, render._mountNode);

@@ -21,6 +21,10 @@ describe('InfiniteLoader', () => {
     rowRendererCalls = [];
   });
 
+  afterEach(() => {
+    render.unmount();
+  });
+
   function defaultIsRowLoaded({index}) {
     isRowLoadedCalls.push(index);
     return !!isRowLoadedMap[index];
@@ -109,7 +113,7 @@ describe('InfiniteLoader', () => {
     expect(loadMoreRowsCalls).toEqual([{startIndex: 0, stopIndex: 9}]);
   });
 
-  it('should :forceUpdate once rows have loaded if :loadMoreRows returns a Promise', async done => {
+  it('should :forceUpdate once rows have loaded if :loadMoreRows returns a Promise', async () => {
     let savedResolve;
     function loadMoreRows() {
       return new Promise(resolve => {
@@ -120,10 +124,9 @@ describe('InfiniteLoader', () => {
     rowRendererCalls.splice(0);
     await savedResolve();
     expect(rowRendererCalls.length > 0).toEqual(true);
-    done();
   });
 
-  it('should not :forceUpdate once rows have loaded rows are no longer visible', async done => {
+  it('should not :forceUpdate once rows have loaded rows are no longer visible', async () => {
     let resolves = [];
     function loadMoreRows() {
       return new Promise(resolve => {
@@ -136,7 +139,6 @@ describe('InfiniteLoader', () => {
     rowRendererCalls.splice(0);
     await resolves[0](); // Resolve the first request only, not the simulated row-change
     expect(rowRendererCalls.length).toEqual(0);
-    done();
   });
 
   describe('minimumBatchSize', () => {

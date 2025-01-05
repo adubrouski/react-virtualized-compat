@@ -28,6 +28,10 @@ function getScrollbarSize20() {
 }
 
 describe('Grid', () => {
+  afterEach(() => {
+    render.unmount();
+  });
+
   function defaultCellRenderer({columnIndex, key, rowIndex, style}) {
     return (
       <div className="gridItem" key={key} style={style}>
@@ -1529,7 +1533,7 @@ describe('Grid', () => {
       );
     });
 
-    it('should overscan in the direction being scrolled', async done => {
+    it('should overscan in the direction being scrolled', async () => {
       const helper = createHelper();
 
       let onSectionRenderedResolve;
@@ -1595,8 +1599,6 @@ describe('Grid', () => {
       expect(helper.rowOverscanStopIndex()).toEqual(9);
       expect(helper.rowStartIndex()).toEqual(5);
       expect(helper.rowStopIndex()).toEqual(9);
-
-      done();
     });
   });
 
@@ -1653,7 +1655,7 @@ describe('Grid', () => {
     });
   });
 
-  it('should pass the cellRenderer an :isScrolling flag when scrolling is in progress', async done => {
+  it('should pass the cellRenderer an :isScrolling flag when scrolling is in progress', async () => {
     const cellRendererCalls = [];
     function cellRenderer({columnIndex, isScrolling, key, rowIndex, style}) {
       cellRendererCalls.push(isScrolling);
@@ -1672,8 +1674,6 @@ describe('Grid', () => {
 
     simulateScroll({grid, scrollTop: 100});
     expect(cellRendererCalls[0]).toEqual(true);
-
-    done();
   });
 
   it('should pass the cellRenderer an :isScrolling flag based on props override', () => {
@@ -1846,7 +1846,7 @@ describe('Grid', () => {
       expect(cellRendererCalls).toEqual([{columnIndex: 0, rowIndex: 3}]);
     });
 
-    it('should clear cache once :isScrolling is false', async done => {
+    it('should clear cache once :isScrolling is false', async () => {
       const cellRendererCalls = [];
       function cellRenderer({columnIndex, key, rowIndex, style}) {
         cellRendererCalls.push({columnIndex, rowIndex});
@@ -1883,8 +1883,6 @@ describe('Grid', () => {
         }),
       );
       expect(cellRendererCalls.length).not.toEqual(0);
-
-      done();
     });
 
     it('should clear cache once :isScrolling via props is false', async () => {
@@ -2044,7 +2042,7 @@ describe('Grid', () => {
       expect(cellRangeRendererCalls).toEqual(1);
     });
 
-    it('should support a custom :scrollingResetTimeInterval prop', async done => {
+    it('should support a custom :scrollingResetTimeInterval prop', async () => {
       const cellRendererCalls = [];
       const scrollingResetTimeInterval =
         DEFAULT_SCROLLING_RESET_TIME_INTERVAL * 2;
@@ -2087,8 +2085,6 @@ describe('Grid', () => {
         }),
       );
       expect(cellRendererCalls.length).not.toEqual(0);
-
-      done();
     });
   });
 
@@ -2353,7 +2349,7 @@ describe('Grid', () => {
       expect(componentUpdates).toEqual(0);
     });
 
-    it('should clear all but the visible rows from the style cache once :isScrolling is false', async done => {
+    it('should clear all but the visible rows from the style cache once :isScrolling is false', async () => {
       const props = {
         columnWidth: 50,
         height: 100,
@@ -2377,8 +2373,6 @@ describe('Grid', () => {
       );
 
       expect(Object.keys(grid._styleCache).length).toBe(4);
-
-      done();
     });
 
     it('should clear style cache if :recomputeGridSize is called', () => {
@@ -2498,8 +2492,16 @@ describe('Grid', () => {
   });
 
   describe('DEV warnings', () => {
+    let warnSpy;
+
+    afterEach(() => {
+      if (warnSpy) {
+        warnSpy.mockRestore();
+      }
+    });
+
     it('should warn about cells that forget to include the :style property', () => {
-      spyOn(console, 'warn');
+      warnSpy = jest.spyOn(console, 'warn');
 
       function cellRenderer(params) {
         return <div key={params.key} />;
@@ -2518,7 +2520,7 @@ describe('Grid', () => {
     });
 
     it('should warn about CellMeasurer measured cells that forget to include the :style property', () => {
-      spyOn(console, 'warn');
+      warnSpy = jest.spyOn(console, 'warn');
 
       const cache = new CellMeasurerCache({
         fixedWidth: true,

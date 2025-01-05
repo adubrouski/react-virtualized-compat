@@ -7,6 +7,10 @@ import {CellMeasurerCache} from '../CellMeasurer';
 // These tests only focus on what MultiGrid does specifically.
 // The inner Grid component is tested in depth elsewhere.
 describe('MultiGrid', () => {
+  afterEach(() => {
+    render.unmount();
+  });
+
   function defaultCellRenderer({columnIndex, key, rowIndex, style}) {
     return (
       <div className="gridItem" key={key} style={style}>

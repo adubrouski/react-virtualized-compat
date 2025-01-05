@@ -13,6 +13,10 @@ function ChildComponent({scrollToColumn, scrollToRow}) {
 }
 
 describe('ArrowKeyStepper', () => {
+  afterEach(() => {
+    render.unmount();
+  });
+
   function renderHelper(props = {}) {
     let onSectionRenderedCallback;
 

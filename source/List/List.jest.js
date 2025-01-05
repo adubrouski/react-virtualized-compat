@@ -13,6 +13,10 @@ describe('List', () => {
   }
   const names = Immutable.fromJS(array);
 
+  afterEach(() => {
+    render.unmount();
+  });
+
   // Override default behavior of overscanning by at least 1 (for accessibility)
   // Because it makes for simple tests below
   function overscanIndicesGetter({startIndex, stopIndex}) {

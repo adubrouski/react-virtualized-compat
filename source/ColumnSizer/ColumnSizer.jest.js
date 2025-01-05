@@ -136,7 +136,7 @@ describe('ColumnSizer', () => {
   });
 
   it('should error if the registered child is not a Grid or a MultiGrid', () => {
-    spyOn(console, 'error');
+    jest.spyOn(console, 'error');
 
     expect(() => {
       render(

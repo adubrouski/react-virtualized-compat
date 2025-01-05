@@ -60,6 +60,10 @@ function renderHelper({
 }
 
 describe('CellMeasurer', () => {
+  afterEach(() => {
+    render.unmount();
+  });
+
   it('componentDidMount() should measure content that is not already in the cache', () => {
     const cache = new CellMeasurerCache({fixedWidth: true});
     const parent = createParent({cache});

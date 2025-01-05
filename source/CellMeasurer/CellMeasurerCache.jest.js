@@ -38,7 +38,7 @@ describe('CellMeasurerCache', () => {
   });
 
   it('should return the correct default sizes for uncached cells if specified', () => {
-    spyOn(console, 'warn'); // Ignore warning about variable width and height
+    jest.spyOn(console, 'warn'); // Ignore warning about variable width and height
 
     const cache = new CellMeasurerCache({
       defaultHeight: 20,
@@ -113,7 +113,7 @@ describe('CellMeasurerCache', () => {
     const keyMapper = jest.fn();
     keyMapper.mockReturnValue('a');
 
-    spyOn(console, 'warn'); // Ignore warning about variable width and height
+    jest.spyOn(console, 'warn'); // Ignore warning about variable width and height
 
     const cache = new CellMeasurerCache({
       defaultHeight: 30,
@@ -226,7 +226,7 @@ describe('CellMeasurerCache', () => {
 
   describe('DEV mode', () => {
     it('should warn about dynamic width and height configurations', () => {
-      spyOn(console, 'warn');
+      jest.spyOn(console, 'warn');
 
       const cache = new CellMeasurerCache({
         fixedHeight: false,
@@ -243,7 +243,7 @@ describe('CellMeasurerCache', () => {
     });
 
     it('should warn about dynamic width with a defaultWidth of 0', () => {
-      spyOn(console, 'warn');
+      jest.spyOn(console, 'warn');
 
       const cache = new CellMeasurerCache({
         defaultWidth: 0,
@@ -258,7 +258,7 @@ describe('CellMeasurerCache', () => {
     });
 
     it('should warn about dynamic height with a defaultHeight of 0', () => {
-      spyOn(console, 'warn');
+      jest.spyOn(console, 'warn');
 
       const cache = new CellMeasurerCache({
         defaultHeight: 0,
